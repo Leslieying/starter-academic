@@ -3,9 +3,9 @@
 widget = "experience"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
-weight = 40  # Order that this section will appear.
+weight = 20  # Order that this section will appear.
 
-title = "Experience"
+title = "Research Experience"
 subtitle = ""
 
 # Date format for experience
@@ -18,27 +18,58 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "CEO"
-  company = "GenCoin"
+  title = "Fishery investigation of Daya Bay and Kaozhouyang Bay"
+  company = ""
   company_url = ""
-  location = "California"
-  date_start = "2017-01-01"
-  date_end = ""
-  description = """
-  Responsibilities include:
-  
-  * Analysing
-  * Modelling
-  * Deploying
-  """
+  location = "Huizhou City, Guangdong Province"
+  date_start = "2017-09-01"
+  date_end = "2019-08-01"
+  description = """"""
 
 [[experience]]
-  title = "Professor"
-  company = "University X"
+  title = "Fishery investigation support of Liusha Bay"
+  company = ""
   company_url = ""
-  location = "California"
-  date_start = "2016-01-01"
-  date_end = "2016-12-31"
-  description = """Taught electronic engineering and researched semiconductor physics."""
+  location = "Zhanjiang City, Guangdong Province"
+  date_start = "2017-09-01"
+  date_end = "2019-08-01"
+  description = """"""
 
+[[experience]]
+  title = "Seasonal soil sampling at mangroves of Fujian Province"
+  company = ""
+  company_url = ""
+  location = "Quanzhou City and Zhangzhou City, Fujian Province"
+  date_start = "2018-03-01"
+  date_end = "2018-12-01"
+  description = """"""
+
+[[experience]]
+  title = "Size spectra analysis of pelagic fish community of Daya Bay"
+  company = ""
+  company_url = ""
+  location = "Lab, SYSU"
+  date_start = "2018-07-01"
+  date_end = "2019-03-01"
+  description = """"""
+
+[[experience]]
+  title = "Stable isotopes analysis of Daya Bay functional groups"
+  company = ""
+  company_url = ""
+  location = "Lab, SYSU"
+  date_start = "2019-03-01"
+  date_end = "2020-03-01"
+  description = """"""
+
+[[experience]]
+  title = "Indoor experiment of two aquatic plants' purification effects"
+  company = ""
+  company_url = ""
+  location = "Lab, SYSU"
+  date_start = "2017-10-01"
+  date_end = "2018-06-05"
+  description = """
+  NOTE: Many thanks for Chen Jingfang's experiment, My responsibilities were analysing data and writing paper
+  """
 +++
