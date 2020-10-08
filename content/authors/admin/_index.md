@@ -77,4 +77,4 @@ user_groups:
 - Visitors
 ---
 
-I am now a CSC-funded PhD candidate who focuses on marine biogeochemistry modelling studies at University of Bristol. Before this, I had some experience in marine ecology, including studying the nekton community structure and their trophic interaction patterns in Daya Bay and Kaozhouyang Bay. During my life, I'm a big fan of guitar, tennis and snooker.
+I am now a CSC-funded PhD candidate who focuses on marine biogeochemistry modelling studies at University of Bristol. Before this, I had some experience in marine ecology, including studying the nekton community structure and their trophic interaction patterns in Daya Bay and Kaozhouyang Bay, China. In my daily life, I'm a big fan of tennis, guitar and snooker.
