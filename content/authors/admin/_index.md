@@ -18,13 +18,13 @@ organizations:
   url: ""
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include marine ecology, global change biology and biodiversity.
+bio: My research interests include marine ecology, biogeochemical cycle and biodiversity.
 
 interests:
-- Marine/Aquatic Ecology
-- Global Changes
+- Marine Ecology
+- Marine biogeochemical cycle
 - Biodiversity
-- Paleobiology
+- Paleontology
 
 education:
   courses:
@@ -77,4 +77,4 @@ user_groups:
 - Visitors
 ---
 
-I am now a CSC-funded PhD candidate who focuses on marine biogeochemistry modelling studies at University of Bristol. Before this, I had some experience in marine ecology, including studying the nekton community structure and their trophic interaction patterns in Daya Bay and Kaozhouyang Bay, China. In my daily life, I'm a big fan of tennis, guitar and snooker.
+I am a CSC-funded PhD candidate at at University of Bristol and focus on marine biogeochemistry modelling studies. I had experience in marine ecology. Specifically speaking, I studied the nekton community structure and their trophic interaction patterns in Daya Bay and Kaozhouyang Bay, China. In my daily life, I'm a big fan of tennis, guitar and pool.
