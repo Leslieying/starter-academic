@@ -39,8 +39,8 @@ date_format = "Jan 2006"
 
 
 [[item]]
-  organization = "Sun Yat-sen University"
-  organization_url = "www.sysu.edu.cn"
+  organization = "Department of Education of Guangdong Province"
+  organization_url = ""
   title = "Outstanding Student of Guangdong Province"
   url = ""
   date_start = "2020-06-01"
@@ -49,8 +49,8 @@ date_format = "Jan 2006"
 
 
 [[item]]
-  organization = "Sun Yat-sen University"
-  organization_url = "www.sysu.edu.cn"
+  organization = "Chinese Ministry of Education"
+  organization_url = ""
   title = "National Scholarship"
   url = ""
   date_start = "2019-10-01"
@@ -59,7 +59,7 @@ date_format = "Jan 2006"
 
 [[item]]
   organization = "Sun Yat-sen University"
-  organization_url = "www.sysu.edu.cn"
+  organization_url = ""
   title = "Academician Lin Hao-ran Scholarship"
   url = ""
   date_start = "2019-11-01"
