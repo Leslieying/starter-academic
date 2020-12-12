@@ -6,9 +6,7 @@ toc: true
 summary: " "
 ---
 
-## 简单介绍如何使用LaTeX作为学术编辑软件
-
-### 什么是LaTeX
+# 什么是LaTeX
 
 LaTeX（/ˈleɪ.tɛk/）是Leslie Lamport基于TeX开发的排版系统，而TeX则是由Prof. Donald Knuth发明的排版软件。他发明TeX排版软件最初是用作解决数学公式排版的问题，但在不断推广下，现在已经成为数学、物理、计算机领域几乎最重要的排版、编辑系统。
 
@@ -16,7 +14,7 @@ TeX最大的不同是，它相当于一门宏语言或标记语言。
 
 LaTeX是TeX家族中一种编译引擎。除了LaTeX，还有XeLaTeX、pdfTeX、LuaTeX等等。
 
-### 为什么选择LaTeX
+# Why LaTeX
 
 为什么要选择LaTeX而不是word？这是许多生命科学领域的科研工作者第一个要问的。事实上，我们大多数人是没有接触过除了word以外的写作排版软件，但在经历过word格式的折磨(如删除页眉的横线、版本控制)后，才发现别的选择有多好。
 
@@ -29,7 +27,7 @@ LaTeX是TeX家族中一种编译引擎。除了LaTeX，还有XeLaTeX、pdfTeX、
 | 数学公式       | 非常好                                                | 只能应付简单的公式    |
 | 学术出版商支持 | IEEE/Spring/Weily/Elseiver/Oxford等几乎所有学术出版商 | 同左                  |
 
-### 如何安装LaTeX
+# 安装LaTeX
 
 完整的TeX需要最基本的TeX引擎、格式支持、各种辅助宏包、一些转换程序、GUI、编辑器、文档查看器等等。这些组成起来就是TeX发行版。就像CentOS、ArchLinux这些和Linux的关系一样。
 
@@ -39,7 +37,7 @@ LaTeX是TeX家族中一种编译引擎。除了LaTeX，还有XeLaTeX、pdfTeX、
 
 不过也有更好的选择，也是越来越流行的选择，就是使用[Overleaf](https://cn.overleaf.com)在线编辑，免安装，免配置。具体如下编辑器介绍。
 
-### 如何选择编辑器
+# 选择编辑器
 
 因为.tex源文件是纯文本，所以一款tex编辑器很影响写作体验。好的会让你感觉像某个巧克力品牌一样丝滑流畅，越写越上瘾；差的则会分散你的注意力，造成负作用。私以为，一个好的编辑器应该具有以下几个特性：
 
@@ -51,18 +49,9 @@ LaTeX是TeX家族中一种编译引擎。除了LaTeX，还有XeLaTeX、pdfTeX、
 
 - 好看的主题配色和字体
 
-不过这些还是要自己切身体会比较好，以下呢，就是一些我用过的编辑器与我的截图，大家仅作参考：
+这里推荐overleaf (online) and Visual Studio Code (Editor).
 
-- TeXStudio (跨平台的IDE，推荐)
-{{< figure library="true" src="texstudio_snap.jpg" title="textstudio" lightbox="true" >}}
-
-- Visual Studio Code (微软推出的轻量级编辑器，可以下载LaTeX Workbench扩展，推荐)
-{{< figure library="true" src="vscode_snap.png" title="vscode" lightbox="true" >}}
-
-- [Overleaf](/https://www.overleaf.com) (主打学术编辑的online editor，无需安装配置，简单易用，界面好看，非常推荐)
-{{< figure library="true" src="overleaf_snap.png" title="overleaf" lightbox="true" >}}
-
-### 基本的命令介绍
+# 基本的命令介绍
 
 安装好LaTeX看起来像在写代码的原因就是因为它丰富的命令与宏包。这里只做简单介绍，更多还是要靠自己多用多摸索。
 
@@ -91,7 +80,7 @@ hello world      %正文区
 \end{document}
 ```
 
-#### 添加数学公式
+## 添加数学公式
 
 ```latex
 $....$   %所有行内公式都可以在两个$之间插入
@@ -100,12 +89,9 @@ d = \frac{a}{b} + \sqrt{c}  %使用\frac{}{}表示分式，使用\sqrt{}表示�
 \end{equation}
 ```
 
-效果如下
-{{< figure library="true" src="equation_snap.png" title="" lightbox="true" >}}
-
 更多的数学公式符号可以参考[lshort一份很短的latex入门文档](https://liam.page/2014/09/08/latex-introduction/)
 
-#### 插入表格
+## 插入表格
 
 `tabular` 环境提供了最简单的表格功能。它用 `\hline` 命令表示横线，在列格式中用 `|` 表示竖线；用 `&` 来分列，用 `\\` 来换行；每列可以采用居左、居中、居右等横向对齐方式，分别用 `l`、`c`、`r` 来表示。
 
@@ -121,11 +107,7 @@ b& 10&  10\\
 \end{tabular}
 ```
 
-这是它的效果
-
-{{< figure library="true" src="tabular_snap.png" title="" lightbox="true" >}}
-
-#### 插入图片
+## 插入图片
 
 ```latex
 \documentclass{article}
@@ -138,22 +120,22 @@ b& 10&  10\\
 %\includegraphics[width=5cm]{Fig1}
 ```
 
-#### 中文排版（其实没什么必要，国内期刊应该基本不接收这种格式，他们也看不懂）
+## 中文排版（其实没什么必要，国内期刊应该基本不接收这种格式，他们也看不懂）
 
 ```latex
 \documentclass[UTF8]{ctexart}
 %其他相同，编译使用xelatex即可
 ```
 
-### 学术写作你最关心的那些点
+# 学术写作你最关心的那些点
 
 /待定
 
-#### 多位作者
+## 多位作者
 
 /待定
 
-#### 如何插入文献
+## 如何插入文献
 
 Word里有Endnote那样的软件配合插入文献。latex当然也有，那就是BibTeX。BibTex生效过程有4大步骤，如下：
 
@@ -177,7 +159,7 @@ Word里有Endnote那样的软件配合插入文献。latex当然也有，那就�
 
 不过说到文献管理软件的话，这里更推荐Zotero搭配LaTeX，为什么呢，因为它也是**开源免费**的。
 
-### 投稿格式/模板使用
+## 投稿格式/模板使用
 
 其实如上面所言，投稿时一般的期刊都会提供模板(具体见author guidlines)，例如Journal of Animal Ecology，里面会有所有要求的格式（如上编辑器截图）。作者只需要按照指示，在上面填充自己的内容即可。
 
