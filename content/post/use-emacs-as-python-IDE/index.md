@@ -3,8 +3,8 @@ title: "Use Emacs as a Python IDE"
 subtitle: ""
 summary: "Emacs package: elpy, company-quickhelper"
 authors: [Rui Ying]
-tags: [Emacs]
-categories: []
+tags: [Emacs; python]
+categories: [Emacs]
 date: 2020-12-12T11:46:23Z
 lastmod: 2020-12-12T11:46:23Z
 featured: false
