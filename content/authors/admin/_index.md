@@ -23,7 +23,7 @@ bio: My research interests include marine ecology, biogeochemical cycle and biod
 interests:
 - Marine Ecology
 - Marine biogeochemical cycle
-- Biodiversity
+- Ecosystem Modeling
 - Paleontology
 
 education:
@@ -77,4 +77,4 @@ user_groups:
 - Visitors
 ---
 
-I am a CSC-funded PhD candidate at University of Bristol and focus on marine biogeochemistry modelling studies. During my Master stage, I studied the nekton community structure and their trophic interaction patterns in Daya Bay and Kaozhouyang Bay, China. In my daily life, I'm a big fan of tennis, guitar and pool.
+I am a CSC-funded PhD candidate at University of Bristol and my PhD interest is trait-based marine ecosystem modelling (EcoGEnIE) and marine biogeochemistry cycle through Earth history. I've studied the Daya Bay nekton community structure through size spectrum and their trophic interaction patterns through stable isotopes analysis.
