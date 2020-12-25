@@ -3,7 +3,7 @@
 
 title: "C语言数组和指针"
 subtitle: ""
-summary: ""
+summary: " "
 authors: [Rui Ying]
 tags: [C]
 categories: [C]

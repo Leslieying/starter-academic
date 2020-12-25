@@ -3,7 +3,7 @@
 
 title: "Embedding Chinese Fonts in R"
 subtitle: ""
-summary: "how to embed CJK fonts in R pdf"
+summary: "embed CJK fonts in R pdf"
 authors: [Rui Ying]
 tags: [R; Chinese fonts]
 categories: [R]

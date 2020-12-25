@@ -3,7 +3,7 @@
 
 title: "LSP Mode"
 subtitle: ""
-summary: "use Emacs LSP"
+summary: " "
 authors: [Rui Ying]
 tags: [Emacs; LSP]
 categories: [Emacs]

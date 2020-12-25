@@ -3,7 +3,7 @@
 
 title: "Git Study"
 subtitle: ""
-summary: ""
+summary: " "
 authors: [Rui Ying]
 tags: [Git]
 categories: [Git]

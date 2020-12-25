@@ -3,7 +3,7 @@
 
 title: "C语言预处理"
 subtitle: ""
-summary: ""
+summary: " "
 authors: [Rui Ying]
 tags: [C]
 categories: [C]
