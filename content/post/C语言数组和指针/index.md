@@ -1,7 +1,31 @@
 ---
-title: C语言数组和指针
-date: 2018-12-02 21:31:14
+# Documentation: https://wowchemy.com/docs/managing-content/
+
+title: "C语言数组和指针"
+subtitle: ""
 summary: ""
+authors: [Rui Ying]
+tags: [C]
+categories: [C]
+date: 2018-12-02T21:31:14Z
+lastmod: 2018-12-02T21:31:14Z
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+  focal_point: ""
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
 ---
 ## 数组名是常量，指针是变量
 

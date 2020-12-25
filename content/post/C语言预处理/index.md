@@ -1,10 +1,33 @@
 ---
-title: C语言预处理
-date: 2018-12-06 12:02:48
+# Documentation: https://wowchemy.com/docs/managing-content/
+
+title: "C语言预处理"
+subtitle: ""
 summary: ""
-toc: true
+authors: [Rui Ying]
+tags: [C]
+categories: [C]
+date: 2018-12-06T12:02:48Z
+lastmod: 2018-12-06T12:02:48Z
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+  focal_point: ""
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
 ---
-## C语言预处理
+# C语言预处理
 
 C的编译过程分为三步。以hello.c为例子，从源代码.c到可执行文件（如windows下的.exe）的过程是：
 

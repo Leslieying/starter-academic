@@ -1,8 +1,31 @@
 ---
-title: 如何分辨三文鱼、鲑鱼、大马哈鱼
-date: 2019-07-03 17:40:21
+# Documentation: https://wowchemy.com/docs/managing-content/
+
+title: "如何分辨三文鱼、鲑鱼、大马哈鱼"
+subtitle: ""
+summary: "Fish identification"
+authors: [Rui Ying]
+tags: [salmon]
+categories: [Fish]
+date: 2019-07-03T17:40:21Z
+lastmod: 2019-07-03T17:40:21Z
+featured: false
 draft: false
-summary: ""
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+  focal_point: ""
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
 ---
 
 ## 分类地位

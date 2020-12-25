@@ -1,12 +1,35 @@
 ---
-title: C语言字符串IO
-date: 2018-12-03 11:17:41
-summary: " "
-toc: true
+# Documentation: https://wowchemy.com/docs/managing-content/
+
+title: "C语言字符串IO"
+subtitle: ""
+summary: ""
+authors: [Rui Ying]
+tags: [C]
+categories: [C]
+date: 2018-12-03T11:17:41Z
+lastmod: 2018-12-03T11:17:41Z
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+  focal_point: ""
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
 ---
 ## 1. 字符串输入
 
-C是一门很笨的语言，所以我们必须把所有细节都告诉它。
+C语言本质上也是一种面向用户的程序，所以必须把尽可能多的细节告诉它。
 
 例如，在处理字符串输入的时候，我们必须先告诉它需要多少空间。所以，下面这种情况就是错误的。
 

@@ -1,8 +1,31 @@
 ---
-title: Git学习总结
-date: 2018-11-25 20:54:42
-summary: " "
-draft: false 
+# Documentation: https://wowchemy.com/docs/managing-content/
+
+title: "Git Study"
+subtitle: ""
+summary: ""
+authors: [Rui Ying]
+tags: [Git]
+categories: [Git]
+date: 2018-11-25T20:54:42Z
+lastmod: 2018-11-25T20:54:42Z
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+  focal_point: ""
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
 ---
 ## Git简介
 

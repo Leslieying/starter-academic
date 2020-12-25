@@ -1,11 +1,33 @@
 ---
-title: 简介如何用LaTeX进行学术写作与排版
-date: 2019-07-03 15:10:26
-draft: false
-toc: true
-summary: " "
----
+# Documentation: https://wowchemy.com/docs/managing-content/
 
+title: "简介如何用LaTeX进行学术写作与排版"
+subtitle: ""
+summary: "use LaTeX to do academic writing"
+authors: [Rui Ying]
+tags: [LaTeX; academic writing]
+categories: [LaTeX]
+date: 2019-07-03T15:10:26Z
+lastmod: 2020-12-25T17:02:51Z
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+  focal_point: ""
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
+---
+`Note: I wouldn't force myself to use LaTeX like this article was to say. I would be practical to choose my tools, because they are just tools.`
 # 什么是LaTeX
 
 LaTeX（/ˈleɪ.tɛk/）是Leslie Lamport基于TeX开发的排版系统，而TeX则是由Prof. Donald Knuth发明的排版软件。他发明TeX排版软件最初是用作解决数学公式排版的问题，但在不断推广下，现在已经成为数学、物理、计算机领域几乎最重要的排版、编辑系统。

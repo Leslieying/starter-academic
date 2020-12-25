@@ -1,9 +1,32 @@
 ---
-title: "How to embed Chinese font in R"
-date: 2020-03-31T20:24:01+08:00
-draft: false
----
+# Documentation: https://wowchemy.com/docs/managing-content/
 
+title: "Embedding Chinese Fonts in R"
+subtitle: ""
+summary: "how to embed CJK fonts in R pdf"
+authors: [Rui Ying]
+tags: [R; Chinese fonts]
+categories: [R]
+date: 2020-03-31T20:24:01Z
+lastmod: 2020-03-31T20:24:01Z
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+  focal_point: ""
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
+---
 ## Aim of this blog
 
 To record the process of embedding Chinese font(or other CJK fonts) in R-created pdf files.
