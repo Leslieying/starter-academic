@@ -77,4 +77,4 @@ user_groups:
 - Visitors
 ---
 
-I am a CSC-funded PhD candidate at University of Bristol and my PhD interest is trait-based marine ecosystem modelling (EcoGEnIE) and marine biogeochemistry cycle through Earth history. I've studied the Daya Bay nekton community structure through size spectrum and their trophic interaction patterns through stable isotopes analysis.
+I am a CSC-funded PhD candidate at School of Earth Science, University of Bristol. My PhD study is going to use trait-based marine ecosystem modelling (ForamEcoGEnIE) to study marine biogeochemistry cycle through Earth history. I've studied the Daya Bay nekton community structure through size spectrum; and their trophic interaction patterns through stable isotopes analysis.
