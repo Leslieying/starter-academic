@@ -3,7 +3,7 @@
 
 title: "C语言字符串IO"
 subtitle: ""
-summary: ""
+summary: " "
 authors: [Rui Ying]
 tags: [C]
 categories: [C]

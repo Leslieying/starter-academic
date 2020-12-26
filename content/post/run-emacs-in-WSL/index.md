@@ -20,9 +20,8 @@ The first one should be the easiest way to install and run, yet it's not so good
 
 WSYS2 is good to use as well, they provide unix-like environment and you can use `pacman` like in arch-linux. But I met an issue that I can't download package after downloading python-pip, which means I can't use python like in unix (I don't know why either).
 
-Finally, we have the last option: downloading Debian/CentOS in windows store and use X-server (e.g. MobaXterm, VcXsrv) to visualise GUI instead of runing in WSL terminal (add `"echo export DISPLAY=0:0"` in `/etc/profile`). Honestly, I didn't find it significantly faster than in WSYS2, but I can use it very conveniently. Of course, "relatively complex" things always exist. For instance I need to install emacs 27.1 by compling source codes, because in the apt the dafult emacs version is 26.1. Also, if you use high DPI screen as me, you need to open compatibility and change DPI setting in shortcut property. Lastly, the CJK font and input method for emacs seems to be another brain-blowing thing...
+Finally, we have the last option: downloading Ubuntu/Debian/CentOS in windows store and use X-server (e.g. MobaXterm, VcXsrv) to visualise GUI instead of runing in WSL terminal (add `"echo export DISPLAY=0:0"` or `export DISPLAY="$(/sbin/ip route | awk '/default/ { print $3 }'):0"` if use WSL2 in `/etc/profile`). Honestly, I didn't find it significantly faster than in WSYS2 (it's pretty faster in WSL2 than WSL1), but I can use it very conveniently. Of course, "relatively complex" things always exist. For instance I need to install emacs 27.1 by compling source codes, because in the apt the dafult emacs version is 26.1. Also, if you use high DPI screen as me, you need to open compatibility and change DPI setting in shortcut property. Lastly, the CJK font and input method for emacs seems to be another brain-blowing thing...
 
 There're also other alternative ways including
 - Docker
-- WSL2
-But I didn't try them, and don't want to yet.
+But I didn't try it.
