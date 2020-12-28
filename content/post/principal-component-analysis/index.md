@@ -8,9 +8,9 @@ authors: [Rui Ying]
 tags: [PCA; Statistic; Linear algebra]
 categories: [Statistic]
 date: 2020-12-25T22:11:27Z
-lastmod: 2020-12-25T22:11:27Z
+lastmod: 2020-12-28T15:47:00Z
 featured: false
-draft: true
+draft: false
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -27,3 +27,5 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 ---
+Recently I studied PCA from [MIT course](https://www.youtube.com/watch?v=a1ZCeFpeW0o&t=327s).
+However, markdown doesn't support equations so well as LaTeX, so I compiled a PDF file and embed the PDF file here. [Check it.](PCA.pdf)

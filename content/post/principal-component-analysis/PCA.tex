@@ -1,0 +1,119 @@
+% Created 2020-12-26 Sat 19:42
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{mathbbol}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{bm}
+\date{\today}
+
+\hypersetup{
+ pdfauthor={Rui Ying},
+ pdftitle={Principal Component Analysis},
+ pdfkeywords={PCA},
+ pdfsubject={Statistic},
+ pdfcreator={Emacs 27.1 (Org mode 9.4.2)}, 
+ pdflang={English}}
+\begin{document}
+
+%\tableofcontents
+
+\section{Covariance matrix}
+\indent
+
+Suppose \textbf{X} is a d-dimensional random vector (with d random variables), and \bm{$X_1$},\dots,\bm{$X_n$} is n independent copies of \textbf{X}.
+
+Write $\bm{X_i} = (X_i^1,\dots,X_i^d)^T$, the subscript means the $i_{th}$ copy, the superscript means the number of random variable (i.e. scala). Then we can combine all the $\bm{X_i}$ together as a new matrix, $\mathbb{X}$ (n by d).
+
+\begin{align}
+  \bm{X} =
+  \begin{pmatrix}
+    X^1\\
+    X^2\\
+    \dots \\
+    X^d
+  \end{pmatrix}\;
+%
+  \mathbb{X} =
+  \begin{pmatrix}
+    \dots & \bm{X_1}^T & \dots\\
+    \dots & \bm{X_2}^T & \dots\\
+    \dots & \bm{X_3}^T & \dots
+  \end{pmatrix}
+\end{align}
+
+Then we can know the covariance matrix, which means take two different scalas or coordinates (notice the superscript) from a vector and compute their covariance. For convenience, not use bold X again as before.
+\begin{align}
+  \label{eq1}
+  \Sigma & = cov(X^i,X^j)\\
+         & = \mathbb{E}(XX^T)-\mathbb{E}(X)\mathbb{E}(X)^T\\
+         & = \mathbb{E}[(X-\mathbb{E}(X))(X-\mathbb{E}(X))^T]
+\end{align}
+When it comes to empirical data, we use average $\bar{X}$ to replace expectation\footnote{Here can be a little comfused because in we used subscript before but here we have $X_i$. This is because in theory, $E(X^1)$ is the expectation of random variable $X^1$, but empirically we sampled many times and calculate their average} and use the empirical covariance matrix \textbf{S} to replace the $\Sigma$), 
+
+\begin{align}
+  \mathbb{E}(X) & =
+  \begin{pmatrix}
+    \mathbb{E}(X^1)\\
+    \vdots\\
+    \mathbb{E}(X^d)
+  \end{pmatrix}
+  \rightarrow
+  \begin{pmatrix}
+    \frac{\sum}{n} X_i^1\\
+    \vdots\\
+    \frac{\sum}{n} X_i^d\\
+  \end{pmatrix}\\
+  S &= \frac{1}{n}\sum (X_iX_i^T) - \bar{X}\bar{X}^T
+\end{align}
+
+In order to eliminate the sum character, we multiply a $\mathbb{1}$ to replace the average. $\mathbb{1}=(1,\dots,1)^T$
+\begin{align}
+  \label{eq3}
+  &\bar{X} = \frac{1}{n}\sum X_i \;\;\;\;\;\;
+  \mathbb{X} =
+  \begin{bmatrix}
+    \vdots&\vdots&\vdots\\
+    X_1&X_2&X_n\\
+    \vdots&\vdots&\vdots
+  \end{bmatrix}\\
+  &\frac{1}{n}\mathbb{X}^T\mathbb{1}=\frac{1}{n}\sum X_i = \bar{X}
+\end{align}
+And we can see that
+\begin{align}
+  M_i &=
+  \begin{bmatrix}
+    0&\vdots & 0& 0\\
+    0&X_i &0&0\\
+    0&\vdots&0&0\\
+  \end{bmatrix}\\
+  \mathbb{X}^T \mathbb{X} &= \sum_i^n M_iM_i^T = \sum_i^nX_iX_i^T\\
+  \mathbb{X}^T &= M_1 + M_2 + \dots + M_n
+\end{align}
+
+Then in Eq.6 can be transformed into
+\begin{align}
+  S = & \frac{1}{n}\mathbb{X}^T\mathbb{X} - \frac{1}{n^2}\mathbb{X}^T(\mathbb{1}\mathbb{1}^T)\mathbb{X}\\
+  = & \frac{1}{n}\mathbb{X^T}(I_d - \frac{1}{n}\mathbb{1}\mathbb{1}^T)\mathbb{X}\\
+  = & \frac{1}{n}\mathbb{X}^TH\mathbb{X}
+\end{align}
+
+\section{What's H?}
+
+
+
+
+
+\end{document}
