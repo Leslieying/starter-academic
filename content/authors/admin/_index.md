@@ -15,13 +15,13 @@ role: PhD Student
 # Organizations/Affiliations
 organizations:
 - name: University of Bristol
-  url: ""
+  url: "www.bristol.ac.uk"
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include marine ecology, biogeochemical cycle and biodiversity.
+bio: My research interests include marine ecology and evolution, biogeochemical cycle and biodiversity.
 
 interests:
-- Marine Ecology
+- Marine Ecology and Evolution
 - Marine biogeochemical cycle
 - Ecosystem Modeling
 - Paleontology
