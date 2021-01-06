@@ -1,0 +1,203 @@
+---
+title: Review data analysis in R
+author: Rui Ying
+date: '2021-01-06'
+slug: []
+categories:
+  - R
+tags:
+  - R; Data Science
+subtitle: ''
+summary: 'tidyverse, reshap2 functions review'
+authors: [Rui Ying]
+lastmod: '2021-01-06T17:12:47Z'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="use-tibble-to-replace-old-data.frame" class="section level1">
+<h1>Use tibble to replace “old” data.frame</h1>
+<div id="differences" class="section level2">
+<h2>Differences:</h2>
+<ul>
+<li>print() by specifying rows;</li>
+<li>subset (you can do slice like in Pandas).</li>
+</ul>
+<pre class="r"><code>library(tidyverse)
+library(magrittr)
+#mtcars %&gt;% print(n=10,width = Inf) #always print all columns, regardless of the width of the screen.
+mtcars[[1]] == mtcars[[&#39;mpg&#39;]] #first column/variable</code></pre>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [31] TRUE TRUE</code></pre>
+<pre class="r"><code>mtcars[,1] == mtcars$mpg #the same</code></pre>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [31] TRUE TRUE</code></pre>
+<pre class="r"><code>mtcars %&gt;% select(mpg) %&gt;% head(5) #select() is also used in subset but a little different</code></pre>
+<pre><code>##                    mpg
+## Mazda RX4         21.0
+## Mazda RX4 Wag     21.0
+## Datsun 710        22.8
+## Hornet 4 Drive    21.4
+## Hornet Sportabout 18.7</code></pre>
+</div>
+<div id="convert-with-data.frame" class="section level2">
+<h2>convert with data.frame</h2>
+<pre class="r"><code>df &lt;- tibble(foo = 1, bar = &#39;bar&#39;)
+class(as.data.frame(df)) #[1] &quot;data.frame&quot;</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>class(as_tibble(df)) #[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+</div>
+</div>
+<div id="reshape-data" class="section level1">
+<h1>Reshape data</h1>
+<div id="what-is-tidy-data" class="section level2">
+<h2>What is Tidy data</h2>
+<p>Column -&gt; variable, row -&gt; observation.
+Ad:
+1. uniformity; 2. Placing variable in columns (or a “vector” in R) allows R and tidyverse to work naturally.
+e.g.</p>
+<pre class="r"><code>mutate(mtcars,new_col = cyl+1) %&gt;% head(5)</code></pre>
+<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb new_col
+## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4       7
+## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4       7
+## 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1       5
+## 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1       7
+## 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2       9</code></pre>
+</div>
+<div id="dplyr-basics" class="section level2">
+<h2>dplyr basics</h2>
+<ul>
+<li>Pick <em>observations</em> by their values: filter()</li>
+<li>Reorder the rows: arrange()</li>
+<li>Pick <em>variables</em> by their names: select()</li>
+<li>Create new variable by computing based on existing variables: mutate()</li>
+<li>A simple summary: summarise()</li>
+<li>Group data by one or more variables: group_by() (always ungroup() after grouping)</li>
+</ul>
+</div>
+<div id="pivot" class="section level2">
+<h2>Pivot</h2>
+<div id="longer-table" class="section level3">
+<h3>Longer table</h3>
+<p>Question: <em>Column names are not names of variables, but values of a variable. For example:</em></p>
+<pre class="r"><code>head(table4a)</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+##   &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<p>We can divide the two untidy columns into a variable column (with col_name ‘year’) and a value column (with col_name ‘cases’)</p>
+<pre class="r"><code>table4a %&gt;% pivot_longer(c(&#39;1999&#39;,&#39;2000&#39;), names_to = &quot;year&quot;, values_to = &quot;cases&quot;)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
+## 6 China       2000  213766</code></pre>
+<pre class="r"><code>table4a %&gt;% gather(`1999`,`2000`,key = &#39;year&#39;,value = &#39;cases&#39;) #the gather() in tidyr is equal</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Brazil      1999   37737
+## 3 China       1999  212258
+## 4 Afghanistan 2000    2666
+## 5 Brazil      2000   80488
+## 6 China       2000  213766</code></pre>
+</div>
+<div id="wider-pivot" class="section level3">
+<h3>Wider pivot</h3>
+<p>Question: <em>Observations is scattered across multiple rows</em> e.g. the cases and population are both observation, which should be put in one row.</p>
+<pre class="r"><code> head(table2,5)</code></pre>
+<pre><code>## # A tibble: 5 x 4
+##   country      year type          count
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         &lt;int&gt;
+## 1 Afghanistan  1999 cases           745
+## 2 Afghanistan  1999 population 19987071
+## 3 Afghanistan  2000 cases          2666
+## 4 Afghanistan  2000 population 20595360
+## 5 Brazil       1999 cases         37737</code></pre>
+<pre class="r"><code>table2 %&gt;% pivot_wider(names_from = type, values_from = count) # here&#39;s 2 paramters only</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<pre class="r"><code>table2 %&gt;% spread(type,count) #spread() is equal as well</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+</div>
+</div>
+<div id="joins" class="section level2">
+<h2>Joins</h2>
+<p>The <em>variables</em> used to connect each pair of tables are called <em>keys</em>, if it is <em>primary key</em> in one table (i.e. define the observation or row name), then it’s a foreign key in other tables. <em>Primary key</em> are not necessary for a table.</p>
+<p>Four <em>mutate</em> joins (<strong>add</strong> new matched variable to primary): inner (smallest subset), left (as primary), right (as primary), full (collection).
+Two <em>filter</em> joins (<strong>filter</strong> matched observations to save or drop).</p>
+</div>
+<div id="reshap2-package" class="section level2">
+<h2>reshap2 package</h2>
+<div id="melt" class="section level3">
+<h3>melt()</h3>
+<p><code>melt()</code> breaks data into a data.frame with only two columns (variable and value), which is exactly transforming a “wide format” data into a “long format” data.
+parameters:
+- <code>id</code>
+- <code>variable.name</code> (change the default variable column name)
+- <code>value.name</code> (change the default value column name)</p>
+<pre class="r"><code>library(reshape2)
+table1_melt &lt;- table1 %&gt;% melt(id=c(&quot;country&quot;,&quot;year&quot;))
+table1_melt</code></pre>
+<pre><code>##        country year   variable      value
+## 1  Afghanistan 1999      cases        745
+## 2  Afghanistan 2000      cases       2666
+## 3       Brazil 1999      cases      37737
+## 4       Brazil 2000      cases      80488
+## 5        China 1999      cases     212258
+## 6        China 2000      cases     213766
+## 7  Afghanistan 1999 population   19987071
+## 8  Afghanistan 2000 population   20595360
+## 9       Brazil 1999 population  172006362
+## 10      Brazil 2000 population  174504898
+## 11       China 1999 population 1272915272
+## 12       China 2000 population 1280428583</code></pre>
+</div>
+<div id="dcast" class="section level3">
+<h3>dcast()</h3>
+<p><code>dcast()</code> do the opposite thing as <code>melt()</code>, transforming long to <em>wide data</em>. Additional parameter including <code>mean</code>,
+The difference between <code>dcast</code> and <code>acast</code> is the output in data.frame (2-D only) or vector/array/matrix.</p>
+<pre class="r"><code>table1_melt %&gt;% dcast(country+year~variable) #turn it back</code></pre>
+<pre><code>##       country year  cases population
+## 1 Afghanistan 1999    745   19987071
+## 2 Afghanistan 2000   2666   20595360
+## 3      Brazil 1999  37737  172006362
+## 4      Brazil 2000  80488  174504898
+## 5       China 1999 212258 1272915272
+## 6       China 2000 213766 1280428583</code></pre>
+<p>This post is built by rmarkdown. Seemingly Rstudio and Rmd are good tool to manage this site.</p>
+</div>
+</div>
+</div>

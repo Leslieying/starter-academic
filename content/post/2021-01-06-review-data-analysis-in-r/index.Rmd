@@ -1,0 +1,107 @@
+---
+title: Review data analysis in R
+author: Rui Ying
+date: '2021-01-06'
+slug: []
+categories:
+  - R
+tags:
+  - R; Data Science
+subtitle: ''
+summary: 'tidyverse, reshap2 functions review'
+authors: [Rui Ying]
+lastmod: '2021-01-06T17:12:47Z'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+# Use tibble to replace "old" data.frame
+
+## Differences:
+- print() by specifying rows; 
+- subset (you can do slice like in Pandas).
+```{r warning=FALSE,message=FALSE}
+library(tidyverse)
+library(magrittr)
+#mtcars %>% print(n=10,width = Inf) #always print all columns, regardless of the width of the screen.
+mtcars[[1]] == mtcars[['mpg']] #first column/variable
+mtcars[,1] == mtcars$mpg #the same
+mtcars %>% select(mpg) %>% head(5) #select() is also used in subset but a little different
+```
+## convert with data.frame
+```{r}
+df <- tibble(foo = 1, bar = 'bar')
+class(as.data.frame(df)) #[1] "data.frame"
+class(as_tibble(df)) #[1] "tbl_df"     "tbl"        "data.frame"
+```
+# Reshape data
+
+## What is Tidy data
+Column -> variable, row -> observation.
+Ad:
+1. uniformity; 2. Placing variable in columns (or a "vector" in R) allows R and tidyverse to work naturally.
+e.g.
+```{r}
+mutate(mtcars,new_col = cyl+1) %>% head(5)
+```
+
+## dplyr basics
+- Pick *observations* by their values: filter()
+- Reorder the rows: arrange()
+- Pick *variables* by their names: select()
+- Create new variable by computing based on existing variables: mutate()
+- A simple summary: summarise()
+- Group data by one or more variables: group_by() (always ungroup() after grouping)
+
+## Pivot
+### Longer table
+Question: *Column names are not names of variables, but values of a variable. For example:*
+```{r}
+head(table4a)
+```
+We can divide the two untidy columns into a variable column (with col_name 'year') and a value column (with col_name 'cases')
+```{r}
+table4a %>% pivot_longer(c('1999','2000'), names_to = "year", values_to = "cases")
+table4a %>% gather(`1999`,`2000`,key = 'year',value = 'cases') #the gather() in tidyr is equal
+```
+### Wider pivot
+Question: *Observations is scattered across multiple rows* e.g. the cases and population are both observation, which should be put in one row.
+```{r}
+ head(table2,5)
+```
+```{r}
+table2 %>% pivot_wider(names_from = type, values_from = count) # here's 2 paramters only
+table2 %>% spread(type,count) #spread() is equal as well
+```
+## Joins
+The *variables* used to connect each pair of tables are called *keys*, if it is *primary key* in one table (i.e. define the observation or row name), then it's a foreign key in other tables. *Primary key* are not necessary for a table.
+
+Four *mutate* joins (__add__ new matched variable to primary): inner (smallest subset), left (as primary), right (as primary), full (collection).
+Two *filter* joins (__filter__ matched observations to save or drop).
+
+## reshap2 package
+
+### melt()
+`melt()` breaks data into a data.frame with only two columns (variable and value), which is exactly transforming a "wide format" data into a "long format" data.
+parameters:
+- `id`
+- `variable.name` (change the default variable column name)
+- `value.name` (change the default value column name)
+```{r warning=FALSE,message=FALSE}
+library(reshape2)
+table1_melt <- table1 %>% melt(id=c("country","year"))
+table1_melt
+```
+### dcast()
+`dcast()` do the opposite thing as `melt()`, transforming long to *wide data*. Additional parameter including `mean`,
+The difference between `dcast` and `acast` is the output in data.frame (2-D only) or vector/array/matrix.
+```{r}
+table1_melt %>% dcast(country+year~variable) #turn it back
+```
+
+
+This post is built by rmarkdown. Seemingly Rstudio and Rmd are good tool to manage this site.
