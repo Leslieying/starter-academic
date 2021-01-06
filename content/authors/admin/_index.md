@@ -60,9 +60,9 @@ social:
   link: https://orcid.org/0000-0001-5811-2388
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.  
-# - icon: cv
-#   icon_pack: ai
-#   link: files/cv.pdf
+#- icon: cv
+#  icon_pack: ai
+#  link: files/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email: "ying.rui@outlook.com"
@@ -73,8 +73,8 @@ highlight_name: false
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
-- Researchers
-- Visitors
+- [] #Researchers
+- [] #Visitors
 ---
 
 I am a CSC-funded PhD candidate at School of Earth Science, University of Bristol. My PhD study is to use a trait-based marine ecosystem modelling (ForamEcoGEnIE) to study marine biogeochemistry cycle through Earth history. I've studied the Daya Bay nekton community and energy flow through size spectrum; and their seasonal trophic interaction patterns using stable isotopes analysis.
