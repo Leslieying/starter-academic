@@ -43,7 +43,7 @@ As the Fig. 1a shows, five process link the stimulus, emotion/cognition and our 
 
 The right sub-figure represents how OCD-patient and healthy person differentiate in emotion. Assume emotion decay exponentially, most emotion would disappear very soon. However, OCD-patients often remind themselves that something haven't been done and this causes long-term active in some brain regions. One may find or have found this through brain-scanning machine and I do believe this should be true.
 
-With stronger cognition, process *b* would be weakening because cognition become the dominating factor deciding our behavior and speech. We can also prevent and treat our unwanted emotion in a rational way. It is not saying the emotion lost its impacts anymore (which is impossible for any animal) but we can control our emotion and reduce the influence of unwanted negative emotion.
+With stronger cognition, process *b* would be weakening because cognition become the dominating factor deciding our behavior and speech. We can also prevent and treat our unwanted emotion in a rational way. In other way, we can then decide what I should think in my mind. However, it is not saying we eliminate our emotion or the emotion lost its impacts anymore (which is actually impossible for any animal). It is saying <u>we can control our emotion and reduce the influence of unwanted negative emotion</u>, equating the Chinese ancient theory - "Unity of knowledge and action" (知行合一).
 
 # Final note
 I am not a professional researcher in Psychology and Neurosciece. Many opinions in this post have not been tested or I have not checked them. Please carefully treat them.
