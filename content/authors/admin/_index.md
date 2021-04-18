@@ -77,4 +77,4 @@ user_groups:
 - [] #Visitors
 ---
 
-I am a CSC-funded PhD candidate at School of Earth Science, University of Bristol. My PhD study is to use a trait-based marine ecosystem modelling (ForamEcoGEnIE) to study marine biogeochemistry cycle through Earth history. I've studied the Daya Bay nekton community and energy flow through size spectrum; and their seasonal trophic interaction patterns using stable isotopes analysis.
+I am a CSC-funded PhD candidate at School of Earth Science, University of Bristol. I use a trait-based marine ecosystem model, ForamEcoGEnIE, to study the marine biogeochemistry cycle through Earth history. You can find more information in my [CV](https://www.ruiying.online/files/cv.pdf).
