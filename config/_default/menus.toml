@@ -19,14 +19,10 @@
   weight = 30
 
 [[main]]
-  name = "Blogs"
+  name = "Posts"
   url = "#posts"
   weight = 40
 
-[[main]]
-  name = "Contact"
-  url = "#contact"
-  weight = 50
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.

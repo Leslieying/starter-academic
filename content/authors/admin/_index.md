@@ -18,17 +18,17 @@ organizations:
   url: "www.bristol.ac.uk"
 
 # Short bio (displayed in user profile at end of posts)
-bio: So fortunate to live with you, Science.
+bio: So fortunate to study science.
 
 interests:
 - Marine Ecology and Evolution
 - Marine biogeochemical cycle
 - Ecosystem Modeling
-- Paleontology
+- Climate change
 
 education:
   courses:
-  - course: PhD in Geology
+  - course: PhD in Earth Sciences
     institution: University of Bristol
     year: 2020
   - course: MSc in Hydrobiology
@@ -52,9 +52,6 @@ social:
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=1QNR-nEAAAAJ&hl=zh-CN
-- icon: github
-  icon_pack: fab
-  link: https://github.com/Leslieying
 - icon: orcid
   icon_pack: ai
   link: https://orcid.org/0000-0001-5811-2388
