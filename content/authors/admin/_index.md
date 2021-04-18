@@ -18,7 +18,7 @@ organizations:
   url: "www.bristol.ac.uk"
 
 # Short bio (displayed in user profile at end of posts)
-bio: So fortunate to study science.
+bio: So fortunate to live in this world and meet science.
 
 interests:
 - Marine Ecology and Evolution
@@ -77,4 +77,4 @@ user_groups:
 - [] #Visitors
 ---
 
-I am a CSC-funded PhD candidate at School of Earth Science, University of Bristol. I use a trait-based marine ecosystem model, ForamEcoGEnIE, to study the marine biogeochemistry cycle through Earth history. You can find more information in my [CV](https://www.ruiying.online/files/cv.pdf).
+I am a CSC-funded PhD candidate at [School of Earth Sciences, University of Bristol](http://www.bristol.ac.uk/earthsciences/). I use a trait-based marine ecosystem model, ForamEcoGEnIE, to study the marine biogeochemical cycle through Earth history. You can find more information in my [CV](https://www.ruiying.online/files/cv.pdf).
