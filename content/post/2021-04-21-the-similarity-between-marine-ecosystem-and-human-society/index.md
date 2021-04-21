@@ -7,7 +7,7 @@ categories:
   - Thoughts
 tags: []
 subtitle: ''
-summary: ''
+summary: 'Human society is similar to natural ecosystem'
 authors: []
 lastmod: '2021-04-21T19:55:57+01:00'
 featured: no
