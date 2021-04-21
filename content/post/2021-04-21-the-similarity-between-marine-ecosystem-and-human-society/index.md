@@ -1,5 +1,5 @@
 ---
-title: NPZ模型与人类社会的相似之处
+title: NPZ模型与人类社会的共通之处
 author: Rui Ying
 date: '2021-04-21'
 slug: []
