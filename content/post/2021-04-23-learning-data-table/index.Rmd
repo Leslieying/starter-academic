@@ -1,0 +1,115 @@
+---
+title: Learning data.table
+author: Rui Ying
+date: '2021-04-23'
+slug: []
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: 'Day 1: data.table syntax'
+authors: []
+lastmod: '2021-04-23T23:13:43+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+runtime: shiny
+---
+# Prepare data
+```{r}
+library(data.table)
+file_url <- 'https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv'
+df <- fread(file_url)
+head(df,3)
+```
+# Simple syntax
+
+data.table use one-line syntax like `df[i, j, by]` where `i` is the rows to select and to manipulate, `j` is the columns to select and how to manupulate it (e.g., mutate function in dplyr), `by` is the group option.
+
+# Subset rows
+```{r}
+library(magrittr)
+#using condition
+sub_df <-  df[year==2014 & hour < 10,]
+head(sub_df)
+#using index
+sub_df <-  df[1:5,]
+head(sub_df)
+#i parameter can sort specific columns
+df[order(hour,-distance)] %>% head() #`-` means descend order
+```
+# Subset columns
+```{r}
+#using list
+df[, .(dep_delay, arr_delay)]
+
+#which is same as
+df[, list(dep_delay, arr_delay)]
+
+# or 
+df[, c("dep_delay", "arr_delay")]
+
+# or 
+list <- c("dep_delay", "arr_delay")
+df[, ..list] #use .. here from the convention of unix directory operation
+#but I understand in a better way: . means list, .. means defining and call this (two steps)
+
+# parameter *with*
+df[, list, with=FALSE]
+#with() is a functional programming style so we can treat columns as variable. with=FALSE means restoring to data.frame manipulation. with=TRUE is default
+
+#if there's only 1 col, the .() can be omitted
+df[, arr_delay] %>% head() #a vector as the column itself
+
+#we can also use index here
+df[, year:day] #var1 to var2
+
+#deselect using - or !
+df[, !c("arr_delay", "dep_delay")]
+#or df[, -c("arr_delay", "dep_delay")]
+
+#deselect using index
+df[, !(year:day)]
+```
+
+# Do something with `j`
+```{r}
+#rename
+
+#numbers .N
+
+```
+# Aggregation using `by`
+```{r}
+# by is similar to group_by() in tidyverse
+# I imagine it as cut a large block into many small ones
+# by will be the key index in output, which should be quite familiar with pandas user
+
+
+
+
+#sorted_by: keyby
+
+
+
+
+#expression in by
+```
+
+
+
+# What's `.SD`?
+
+`.SD` means *S*elect of *D*ata. But I prefer regrading it as "grouped data".
+
+```{r}
+#.SD
+
+
+
+#.SDcol
+
+```

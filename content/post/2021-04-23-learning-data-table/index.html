@@ -1,0 +1,251 @@
+---
+title: Learning data.table
+author: Rui Ying
+date: '2021-04-23'
+slug: []
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: 'Day 1: data.table syntax'
+authors: []
+lastmod: '2021-04-23T23:13:43+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+runtime: shiny
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="section-prepare-data" class="section level1">
+<h1>Prepare data</h1>
+<pre class="r"><code>library(data.table)
+file_url &lt;- &#39;https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv&#39;
+df &lt;- fread(file_url)
+head(df,3)</code></pre>
+<pre><code>##    year month day dep_delay arr_delay carrier origin dest air_time distance
+## 1: 2014     1   1        14        13      AA    JFK  LAX      359     2475
+## 2: 2014     1   1        -3        13      AA    JFK  LAX      363     2475
+## 3: 2014     1   1         2         9      AA    JFK  LAX      351     2475
+##    hour
+## 1:    9
+## 2:   11
+## 3:   19</code></pre>
+</div>
+<div id="section-simple-syntax" class="section level1">
+<h1>Simple syntax</h1>
+<p>data.table use one-line syntax like <code>df[i, j, by]</code> where <code>i</code> is the rows to select and to manipulate, <code>j</code> is the columns to select and how to manupulate it (e.g., mutate function in dplyr), <code>by</code> is the group option.</p>
+</div>
+<div id="section-subset-rows" class="section level1">
+<h1>Subset rows</h1>
+<pre class="r"><code>library(magrittr)
+#using condition
+sub_df &lt;-  df[year==2014 &amp; hour &lt; 10,]
+head(sub_df)</code></pre>
+<pre><code>##    year month day dep_delay arr_delay carrier origin dest air_time distance
+## 1: 2014     1   1        14        13      AA    JFK  LAX      359     2475
+## 2: 2014     1   1        -8       -26      AA    LGA  PBI      157     1035
+## 3: 2014     1   1        -7        -6      AA    LGA  ORD      142      733
+## 4: 2014     1   1        -7         0      AA    LGA  ORD      143      733
+## 5: 2014     1   1        -8       -17      AA    LGA  ORD      139      733
+## 6: 2014     1   1        -2        15      AA    LGA  ORD      145      733
+##    hour
+## 1:    9
+## 2:    7
+## 3:    5
+## 4:    6
+## 5:    6
+## 6:    7</code></pre>
+<pre class="r"><code>#using index
+sub_df &lt;-  df[1:5,]
+head(sub_df)</code></pre>
+<pre><code>##    year month day dep_delay arr_delay carrier origin dest air_time distance
+## 1: 2014     1   1        14        13      AA    JFK  LAX      359     2475
+## 2: 2014     1   1        -3        13      AA    JFK  LAX      363     2475
+## 3: 2014     1   1         2         9      AA    JFK  LAX      351     2475
+## 4: 2014     1   1        -8       -26      AA    LGA  PBI      157     1035
+## 5: 2014     1   1         2         1      AA    JFK  LAX      350     2475
+##    hour
+## 1:    9
+## 2:   11
+## 3:   19
+## 4:    7
+## 5:   13</code></pre>
+<pre class="r"><code>#i parameter can sort specific columns
+df[order(hour,-distance)] %&gt;% head() #`-` means descend order</code></pre>
+<pre><code>##    year month day dep_delay arr_delay carrier origin dest air_time distance
+## 1: 2014     2  13       922       975      HA    JFK  HNL      659     4983
+## 2: 2014     7   3       254       221      AA    JFK  SFO      341     2586
+## 3: 2014     7  14       230       246      B6    JFK  SFO      335     2586
+## 4: 2014     7  15       318       305      VX    JFK  SFO      343     2586
+## 5: 2014     1   4       244       201      UA    EWR  SFO      352     2565
+## 6: 2014     2   3       244       267      UA    EWR  SFO      395     2565
+##    hour
+## 1:    0
+## 2:    0
+## 3:    0
+## 4:    0
+## 5:    0
+## 6:    0</code></pre>
+</div>
+<div id="section-subset-columns" class="section level1">
+<h1>Subset columns</h1>
+<pre class="r"><code>#using list
+df[, .(dep_delay, arr_delay)]</code></pre>
+<pre><code>##         dep_delay arr_delay
+##      1:        14        13
+##      2:        -3        13
+##      3:         2         9
+##      4:        -8       -26
+##      5:         2         1
+##     ---                    
+## 253312:         1       -30
+## 253313:        -5       -14
+## 253314:        -8        16
+## 253315:        -4        15
+## 253316:        -5         1</code></pre>
+<pre class="r"><code>#which is same as
+df[, list(dep_delay, arr_delay)]</code></pre>
+<pre><code>##         dep_delay arr_delay
+##      1:        14        13
+##      2:        -3        13
+##      3:         2         9
+##      4:        -8       -26
+##      5:         2         1
+##     ---                    
+## 253312:         1       -30
+## 253313:        -5       -14
+## 253314:        -8        16
+## 253315:        -4        15
+## 253316:        -5         1</code></pre>
+<pre class="r"><code># or 
+df[, c(&quot;dep_delay&quot;, &quot;arr_delay&quot;)]</code></pre>
+<pre><code>##         dep_delay arr_delay
+##      1:        14        13
+##      2:        -3        13
+##      3:         2         9
+##      4:        -8       -26
+##      5:         2         1
+##     ---                    
+## 253312:         1       -30
+## 253313:        -5       -14
+## 253314:        -8        16
+## 253315:        -4        15
+## 253316:        -5         1</code></pre>
+<pre class="r"><code># or 
+list &lt;- c(&quot;dep_delay&quot;, &quot;arr_delay&quot;)
+df[, ..list] #use .. here from the convention of unix directory operation</code></pre>
+<pre><code>##         dep_delay arr_delay
+##      1:        14        13
+##      2:        -3        13
+##      3:         2         9
+##      4:        -8       -26
+##      5:         2         1
+##     ---                    
+## 253312:         1       -30
+## 253313:        -5       -14
+## 253314:        -8        16
+## 253315:        -4        15
+## 253316:        -5         1</code></pre>
+<pre class="r"><code>#but I understand in a better way: . means list, .. means defining and call this (two steps)
+
+# parameter *with*
+df[, list, with=FALSE]</code></pre>
+<pre><code>##         dep_delay arr_delay
+##      1:        14        13
+##      2:        -3        13
+##      3:         2         9
+##      4:        -8       -26
+##      5:         2         1
+##     ---                    
+## 253312:         1       -30
+## 253313:        -5       -14
+## 253314:        -8        16
+## 253315:        -4        15
+## 253316:        -5         1</code></pre>
+<pre class="r"><code>#with() is a functional programming style so we can treat columns as variable. with=FALSE means restoring to data.frame manipulation. with=TRUE is default
+
+#if there&#39;s only 1 col, the .() can be omitted
+df[, arr_delay] %&gt;% head() #a vector as the column itself</code></pre>
+<pre><code>## [1]  13  13   9 -26   1   0</code></pre>
+<pre class="r"><code>#we can also use index here
+df[, year:day] #var1 to var2</code></pre>
+<pre><code>##         year month day
+##      1: 2014     1   1
+##      2: 2014     1   1
+##      3: 2014     1   1
+##      4: 2014     1   1
+##      5: 2014     1   1
+##     ---               
+## 253312: 2014    10  31
+## 253313: 2014    10  31
+## 253314: 2014    10  31
+## 253315: 2014    10  31
+## 253316: 2014    10  31</code></pre>
+<pre class="r"><code>#deselect using - or !
+df[, !c(&quot;arr_delay&quot;, &quot;dep_delay&quot;)]</code></pre>
+<pre><code>##         year month day carrier origin dest air_time distance hour
+##      1: 2014     1   1      AA    JFK  LAX      359     2475    9
+##      2: 2014     1   1      AA    JFK  LAX      363     2475   11
+##      3: 2014     1   1      AA    JFK  LAX      351     2475   19
+##      4: 2014     1   1      AA    LGA  PBI      157     1035    7
+##      5: 2014     1   1      AA    JFK  LAX      350     2475   13
+##     ---                                                          
+## 253312: 2014    10  31      UA    LGA  IAH      201     1416   14
+## 253313: 2014    10  31      UA    EWR  IAH      189     1400    8
+## 253314: 2014    10  31      MQ    LGA  RDU       83      431   11
+## 253315: 2014    10  31      MQ    LGA  DTW       75      502   11
+## 253316: 2014    10  31      MQ    LGA  SDF      110      659    8</code></pre>
+<pre class="r"><code>#or df[, -c(&quot;arr_delay&quot;, &quot;dep_delay&quot;)]
+
+#deselect using index
+df[, !(year:day)]</code></pre>
+<pre><code>##         dep_delay arr_delay carrier origin dest air_time distance hour
+##      1:        14        13      AA    JFK  LAX      359     2475    9
+##      2:        -3        13      AA    JFK  LAX      363     2475   11
+##      3:         2         9      AA    JFK  LAX      351     2475   19
+##      4:        -8       -26      AA    LGA  PBI      157     1035    7
+##      5:         2         1      AA    JFK  LAX      350     2475   13
+##     ---                                                               
+## 253312:         1       -30      UA    LGA  IAH      201     1416   14
+## 253313:        -5       -14      UA    EWR  IAH      189     1400    8
+## 253314:        -8        16      MQ    LGA  RDU       83      431   11
+## 253315:        -4        15      MQ    LGA  DTW       75      502   11
+## 253316:        -5         1      MQ    LGA  SDF      110      659    8</code></pre>
+</div>
+<div id="section-do-something-with-j" class="section level1">
+<h1>Do something with <code>j</code></h1>
+<pre class="r"><code>#rename
+
+#numbers .N</code></pre>
+</div>
+<div id="section-aggregation-using-by" class="section level1">
+<h1>Aggregation using <code>by</code></h1>
+<pre class="r"><code># by is similar to group_by() in tidyverse
+# I imagine it as cut a large block into many small ones
+# by will be the key index in output, which should be quite familiar with pandas user
+
+
+
+
+#sorted_by: keyby
+
+
+
+
+#expression in by</code></pre>
+</div>
+<div id="section-whats-.sd" class="section level1">
+<h1>What’s <code>.SD</code>?</h1>
+<p><code>.SD</code> means <em>S</em>elect of <em>D</em>ata. But I prefer regrading it as “grouped data”.</p>
+<pre class="r"><code>#.SD
+
+
+
+#.SDcol</code></pre>
+</div>
