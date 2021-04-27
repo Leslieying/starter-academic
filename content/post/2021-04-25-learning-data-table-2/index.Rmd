@@ -1,0 +1,71 @@
+---
+title: Learning data.table (2)
+author: Rui Ying
+date: '2021-04-25'
+slug: []
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: 'Day 2: data.table add/update/delete columns by reference'
+authors: []
+lastmod: '2021-04-25T22:35:28+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+```{r}
+#download data as usual
+library(data.table)
+library(magrittr)
+file_url <- 'https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv'
+df <- fread(file_url)
+```
+# Introduction
+This post studies the use of `:=` operator which add/update/delete *columns*. The difference between `:=` and default data.frame operation is the former does by reference and therefore is not deep copy and not assign any value to a variable. This causes faster speed, less memory use but some side effects.
+
+## Two forms of `:=` ways
+```{r eval=FALSE} 
+# LHS := RHS
+DT[, c("colA", "colB") := list(valA, valB)]
+
+# function form
+DT[, `:=`(colA = valA, # valA is assigned to colA
+          colB = valB)]
+```
+
+## Add/update/delete columns
+```{r}
+df[, `:=`(speed = distance / (air_time/60),
+   delay = arr_delay + dep_delay)] %>% head()
+```
+# Subassign - conditional update
+```{r}
+df[hour == 24L, hour := 0L][] #replace all hour 24 to 0
+# note := returns the result invisibly, so we have extra [] here
+```
+
+# Delete columns
+```{r}
+df[, c("delay") := NULL]
+```
+
+# Using `by`
+```{r}
+df[, max_speed := max(speed), by = .(origin, dest)]
+```
+
+# Multiple columns
+```{r}
+in_cols  = c("dep_delay", "arr_delay")
+out_cols = c("max_dep_delay", "max_arr_delay")
+df[, c(out_cols) := lapply(.SD, max), by = month, .SD = in_cols][] %>% head()
+
+#note the c() in out_cols because we can not do out_cols := lapply(.SD, max). That would result in adding one new column named out_col.
+```
+
+# Side effects of `:=`
+Because `:=` refer to the memory directly, it can be dangerous in writing function: any operation would change the origin data set. Thus a better way is use `copy()` first and do other things in the duplicate one.

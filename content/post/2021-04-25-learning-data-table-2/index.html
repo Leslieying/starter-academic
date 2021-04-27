@@ -1,0 +1,122 @@
+---
+title: Learning data.table (2)
+author: Rui Ying
+date: '2021-04-25'
+slug: []
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: 'Day 2: data.table add/update/delete columns by reference'
+authors: []
+lastmod: '2021-04-25T22:35:28+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<pre class="r"><code>#download data as usual
+library(data.table)
+library(magrittr)
+file_url &lt;- &#39;https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv&#39;
+df &lt;- fread(file_url)</code></pre>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This post studies the use of <code>:=</code> operator which add/update/delete <em>columns</em>. The difference between <code>:=</code> and default data.frame operation is the former does by reference and therefore is not deep copy and not assign any value to a variable. This causes faster speed, less memory use but some side effects.</p>
+<div id="two-forms-of-ways" class="section level2">
+<h2>Two forms of <code>:=</code> ways</h2>
+<pre class="r"><code># LHS := RHS
+DT[, c(&quot;colA&quot;, &quot;colB&quot;) := list(valA, valB)]
+
+# function form
+DT[, `:=`(colA = valA, # valA is assigned to colA
+          colB = valB)]</code></pre>
+</div>
+<div id="addupdatedelete-columns" class="section level2">
+<h2>Add/update/delete columns</h2>
+<pre class="r"><code>df[, `:=`(speed = distance / (air_time/60),
+   delay = arr_delay + dep_delay)] %&gt;% head()</code></pre>
+<pre><code>##    year month day dep_delay arr_delay carrier origin dest air_time distance
+## 1: 2014     1   1        14        13      AA    JFK  LAX      359     2475
+## 2: 2014     1   1        -3        13      AA    JFK  LAX      363     2475
+## 3: 2014     1   1         2         9      AA    JFK  LAX      351     2475
+## 4: 2014     1   1        -8       -26      AA    LGA  PBI      157     1035
+## 5: 2014     1   1         2         1      AA    JFK  LAX      350     2475
+## 6: 2014     1   1         4         0      AA    EWR  LAX      339     2454
+##    hour    speed delay
+## 1:    9 413.6490    27
+## 2:   11 409.0909    10
+## 3:   19 423.0769    11
+## 4:    7 395.5414   -34
+## 5:   13 424.2857     3
+## 6:   18 434.3363     4</code></pre>
+</div>
+</div>
+<div id="subassign---conditional-update" class="section level1">
+<h1>Subassign - conditional update</h1>
+<pre class="r"><code>df[hour == 24L, hour := 0L][] #replace all hour 24 to 0</code></pre>
+<pre><code>##         year month day dep_delay arr_delay carrier origin dest air_time
+##      1: 2014     1   1        14        13      AA    JFK  LAX      359
+##      2: 2014     1   1        -3        13      AA    JFK  LAX      363
+##      3: 2014     1   1         2         9      AA    JFK  LAX      351
+##      4: 2014     1   1        -8       -26      AA    LGA  PBI      157
+##      5: 2014     1   1         2         1      AA    JFK  LAX      350
+##     ---                                                                
+## 253312: 2014    10  31         1       -30      UA    LGA  IAH      201
+## 253313: 2014    10  31        -5       -14      UA    EWR  IAH      189
+## 253314: 2014    10  31        -8        16      MQ    LGA  RDU       83
+## 253315: 2014    10  31        -4        15      MQ    LGA  DTW       75
+## 253316: 2014    10  31        -5         1      MQ    LGA  SDF      110
+##         distance hour    speed delay
+##      1:     2475    9 413.6490    27
+##      2:     2475   11 409.0909    10
+##      3:     2475   19 423.0769    11
+##      4:     1035    7 395.5414   -34
+##      5:     2475   13 424.2857     3
+##     ---                             
+## 253312:     1416   14 422.6866   -29
+## 253313:     1400    8 444.4444   -19
+## 253314:      431   11 311.5663     8
+## 253315:      502   11 401.6000    11
+## 253316:      659    8 359.4545    -4</code></pre>
+<pre class="r"><code># note := returns the result invisibly, so we have extra [] here</code></pre>
+</div>
+<div id="delete-columns" class="section level1">
+<h1>Delete columns</h1>
+<pre class="r"><code>df[, c(&quot;delay&quot;) := NULL]</code></pre>
+</div>
+<div id="using-by" class="section level1">
+<h1>Using <code>by</code></h1>
+<pre class="r"><code>df[, max_speed := max(speed), by = .(origin, dest)]</code></pre>
+</div>
+<div id="multiple-columns" class="section level1">
+<h1>Multiple columns</h1>
+<pre class="r"><code>in_cols  = c(&quot;dep_delay&quot;, &quot;arr_delay&quot;)
+out_cols = c(&quot;max_dep_delay&quot;, &quot;max_arr_delay&quot;)
+df[, c(out_cols) := lapply(.SD, max), by = month, .SD = in_cols][] %&gt;% head()</code></pre>
+<pre><code>##    year month day dep_delay arr_delay carrier origin dest air_time distance
+## 1: 2014     1   1        14        13      AA    JFK  LAX      359     2475
+## 2: 2014     1   1        -3        13      AA    JFK  LAX      363     2475
+## 3: 2014     1   1         2         9      AA    JFK  LAX      351     2475
+## 4: 2014     1   1        -8       -26      AA    LGA  PBI      157     1035
+## 5: 2014     1   1         2         1      AA    JFK  LAX      350     2475
+## 6: 2014     1   1         4         0      AA    EWR  LAX      339     2454
+##    hour    speed max_speed max_dep_delay max_arr_delay
+## 1:    9 413.6490  526.5957           973           996
+## 2:   11 409.0909  526.5957           973           996
+## 3:   19 423.0769  526.5957           973           996
+## 4:    7 395.5414  517.5000           973           996
+## 5:   13 424.2857  526.5957           973           996
+## 6:   18 434.3363  518.4507           973           996</code></pre>
+<pre class="r"><code>#note the c() in out_cols because we can not do out_cols := lapply(.SD, max). That would result in adding one new column named out_col.</code></pre>
+</div>
+<div id="side-effects-of" class="section level1">
+<h1>Side effects of <code>:=</code></h1>
+<p>Because <code>:=</code> refer to the memory directly, it can be dangerous in writing function: any operation would change the origin data set. Thus a better way is use <code>copy()</code> first and do other things in the duplicate one.</p>
+</div>

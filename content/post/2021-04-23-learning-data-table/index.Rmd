@@ -1,5 +1,5 @@
 ---
-title: Learning data.table
+title: Learning data.table (1)
 author: Rui Ying
 date: '2021-04-23'
 slug: []
@@ -35,7 +35,7 @@ library(magrittr)
 #using condition
 sub_df <-  df[year==2014 & hour < 10,]
 head(sub_df)
-#using index
+#using index (not recommended because of bad readability and maintainance)
 sub_df <-  df[1:5,]
 head(sub_df)
 #i parameter can sort specific columns
@@ -78,9 +78,18 @@ df[, !(year:day)]
 # Do something with `j`
 ```{r}
 #rename
+df[, .(delay_arr = arr_delay, delay_dep = dep_delay)] %>% head()
 
 #numbers .N
+df[origin == "JFK" & month == 6L, .N] %>% head()
+#.N is a special built-in variable that holds the number of observations in the current group.
 
+#a same way
+df[origin == "JFK" & month == 6L, length(dest)]
+
+#calculate mean value
+df[origin == "JFK" & month == 6L,
+   .(m_arr = mean(arr_delay), m_dep = mean(dep_delay))] %>% head()
 ```
 # Aggregation using `by`
 ```{r}
@@ -88,28 +97,60 @@ df[, !(year:day)]
 # I imagine it as cut a large block into many small ones
 # by will be the key index in output, which should be quite familiar with pandas user
 
+# a simple example
+df[, .N, by = origin] %>% head()
 
+# multiple group
+df[carrier == "AA", .N, by = .(origin, dest)] %>% head()
 
+# calculate in j
+df[carrier == "AA",
+   .(mean(arr_delay), mean(dep_delay)),
+   by = .(origin, dest, month)] %>% head()
 
 #sorted_by: keyby
-
-
-
+#nothing different but in a tidy way
+df[carrier == "AA",
+   .(mean(arr_delay), mean(dep_delay)),
+   keyby = .(origin, dest, month)] %>% head()
 
 #expression in by
+df[, .N, .(dep_delay>0, arr_delay>0)] %>% head()
+
 ```
 
 
 
 # What's `.SD`?
 
-`.SD` means *S*elect of *D*ata. But I prefer regrading it as "grouped data".
-
+`.SD` means *S*elect of *D*ata. It's a data.table that holds the data for the current group defined using `by`. I prefer regrading it as "grouped data".
+  
 ```{r}
 #.SD
+DT = data.table(
+  ID = c("b","b","b","a","a","c"),
+  a = 1:6,
+  b = 7:12,
+  c = 13:18)
+print(DT)
+DT[, print(.SD), by = ID]
 
+#calculate each block's mean
+DT[, lapply(.SD, mean), by = ID]
+```
+So you can find `.SD` contains all columns as origin `DT` but without the grouping column `ID`. And `.SD` is well sorted.
 
+# `.SDcol` specify what to compute
+```{r}
+df[carrier == "AA",                       ## Only on trips with carrier "AA"
+   lapply(.SD, mean),                     ## compute the mean
+   by = .(origin, dest, month),           ## for every 'origin,dest,month'
+   .SDcols = c("arr_delay", "dep_delay")] ## for just those specified in .SDcols
+```
 
-#.SDcol
-
+# subset `.SDcol`
+```{r}
+# return first 2 cols for each month
+# you can always treat `by` as "for each"
+df[, head(.SD, 2), by=month] %>% head()
 ```
