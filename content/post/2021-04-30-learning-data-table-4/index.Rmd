@@ -1,0 +1,102 @@
+---
+title: Learning data.table (4)
+author: Rui Ying
+date: '2021-04-30'
+slug: []
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: 'Day 4: reshape data.table'
+authors: []
+lastmod: '2021-04-30T16:38:36+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+# `melt` and `dcast`
+
+Actually I don't know the difference of these two functions between data.table and reshape2, but the use should be same.
+
+## `melt` converts wide to long
+
+```{r}
+library(data.table)
+s1 <- "family_id age_mother dob_child1 dob_child2 dob_child3
+1         30 1998-11-26 2000-01-29         NA
+2         27 1996-06-22         NA         NA
+3         26 2002-07-11 2004-04-05 2007-09-02
+4         32 2004-10-10 2009-08-27 2012-07-21
+5         29 2000-12-05 2005-02-28         NA"
+DT <- fread(s1)
+DT
+str(DT)
+
+DT.melt <- melt(DT, id.vars = c("family_id","age_mother"),
+                measure.vars = c("dob_child1", "dob_child2", "dob_child3"),
+                variable.name = "child",
+                value.name = "dob")
+head(DT.melt)
+```
+
+- If neither `id.var` and `measure.var` are specified , the `id` will assign all non-integer, logical, numeric columns.
+- By default, var and value name is simply `var` and `value`.
+
+## `dcast` converts long to wide
+
+dcast use formula as below
+```{r}
+dcast(DT.melt, family_id + age_mother ~ child, value.var = "dob") #value.var is the variable to fill all cells
+```
+# Limitation in combine multiple columns
+```{r}
+s2 <- "family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
+1         30 1998-11-26 2000-01-29         NA             1             2            NA
+2         27 1996-06-22         NA         NA             2            NA            NA
+3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1
+4         32 2004-10-10 2009-08-27 2012-07-21             1             1             1
+5         29 2000-12-05 2005-02-28         NA             2             1            NA"
+DT <- fread(s2)
+DT
+```
+
+
+## An untidy way to implement this (not run)
+```{r eval=FALSE}
+DT.m1 = melt(DT, id = c("family_id", "age_mother"))
+DT.m1[, c("variable", "child") := tstrsplit(variable, "_", fixed = TRUE)] #I don't even understand this weird function tstrsplit
+DT.c1 = dcast(DT.m1, family_id + age_mother + child ~ variable, value.var = "value")
+DT.c1
+```
+
+## Enhanced ways
+
+### Pass a list to measure.vars where each element of the list contains the column that should be combined together.
+```{r}
+colA = paste("dob_child", 1:3, sep = "")
+colB = paste("gender_child", 1:3, sep = "")
+DT.m2 = melt(DT, measure = list(colA, colB), value.name = c("dob", "gender")) #notice the measure paramter instead of measure.var
+DT.m2
+```
+
+### Using `patterns()`
+```{r}
+DT.m2 = melt(DT, measure = patterns("^dob", "^gender"), value.name = c("dob", "gender"))
+DT.m2
+#the ^ here means letters beginning with "dob" and "gender"
+#similarly, _ means end with xxx
+```
+
+You can also do this using `stat::reshape()` in base R
+
+### Enhanced `dcast`
+
+```{r}
+DT.c2 <- dcast(DT.m2, family_id + age_mother ~ variable, value.var = c("dob", "gender") )
+DT.c2
+```
+### 
