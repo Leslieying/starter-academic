@@ -83,6 +83,8 @@ DT.m2 = melt(DT, measure = list(colA, colB), value.name = c("dob", "gender")) #n
 DT.m2
 ```
 
+The additional `variable` column is good to do dcast later and *can be removed* if necessary!
+
 ### Using `patterns()`
 ```{r}
 DT.m2 = melt(DT, measure = patterns("^dob", "^gender"), value.name = c("dob", "gender"))
