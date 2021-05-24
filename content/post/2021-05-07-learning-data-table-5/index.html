@@ -1,0 +1,128 @@
+---
+title: learning data.table (5)
+author: Rui Ying
+date: '2021-05-07'
+slug: []
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: 'Day 5: Secondary indices and auto indexing'
+authors: []
+lastmod: '2021-05-07T14:49:56+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="whats-secondary-index" class="section level1">
+<h1>What’s secondary index?</h1>
+<p>Secondary index is similar to <code>key</code> but differ in</p>
+<ul>
+<li>Only reorder specific columns instead of <em>entire</em> data.table, and record the order vector in attribute <code>index</code></li>
+<li>There can be &gt; 1 secondary index for a data.table (though you can have multiple keys per row).</li>
+</ul>
+<p>I treat secondary index as fast and simple key for subsetting.</p>
+<div id="set-secondary-index" class="section level2">
+<h2>Set secondary index</h2>
+<pre class="r"><code>setindex(flights, origin) #or setindexv()
+head(flights)</code></pre>
+<pre><code>##    year month day dep_delay arr_delay carrier origin dest air_time distance
+## 1: 2014     1   1        14        13      AA    JFK  LAX      359     2475
+## 2: 2014     1   1        -3        13      AA    JFK  LAX      363     2475
+## 3: 2014     1   1         2         9      AA    JFK  LAX      351     2475
+## 4: 2014     1   1        -8       -26      AA    LGA  PBI      157     1035
+## 5: 2014     1   1         2         1      AA    JFK  LAX      350     2475
+## 6: 2014     1   1         4         0      AA    EWR  LAX      339     2454
+##    hour
+## 1:    9
+## 2:   11
+## 3:   19
+## 4:    7
+## 5:   13
+## 6:   18</code></pre>
+<pre class="r"><code>names(attributes(flights))</code></pre>
+<pre><code>## [1] &quot;names&quot;             &quot;row.names&quot;         &quot;class&quot;            
+## [4] &quot;.internal.selfref&quot; &quot;index&quot;</code></pre>
+</div>
+<div id="get-secondary-index" class="section level2">
+<h2>Get secondary index</h2>
+<pre class="r"><code>setindex(flights, origin, dest)
+indices(flights)</code></pre>
+<pre><code>## [1] &quot;origin&quot;       &quot;origin__dest&quot;</code></pre>
+</div>
+</div>
+<div id="why-secondary-index" class="section level1">
+<h1>Why secondary index?</h1>
+<div id="case-1-reordering-is-expensive" class="section level2">
+<h2>Case 1: reordering is expensive</h2>
+<p>Using <code>setkey()</code> does two things:</p>
+<ul>
+<li><p>Computing order vector</p></li>
+<li><p>Reordering entire data.table</p></li>
+</ul>
+<p>But the second one can be consuming, so secondary index do the first thing only and store the output vector into <code>index</code>.</p>
+</div>
+<div id="case-2-there-is-only-1-key-for-1-data.table" class="section level2">
+<h2>Case 2: there is only 1 key for 1 data.table</h2>
+<p>If we have set one key, and need to reset one, we have to re-computer and re-order entire data.table. But the secondary index allows more.</p>
+</div>
+<div id="case-3-reuse-index" class="section level2">
+<h2>Case 3: reuse index</h2>
+<p>The <code>index</code> attribute avoid repeated computing if an index already exists. Simply add <code>verbose=TRUE</code> in data.table arguments.</p>
+</div>
+</div>
+<div id="application-of-secondary-index" class="section level1">
+<h1>Application of secondary index</h1>
+<div id="fast-subset-using-on" class="section level2">
+<h2>Fast subset using <code>on</code></h2>
+<pre class="r"><code>flights[&quot;JFK&quot;，on=&quot;origin&quot;] #works for both key and secondary index</code></pre>
+<pre><code>##        year month day dep_delay arr_delay carrier origin dest air_time distance
+##     1: 2014     1   1        14        13      AA    JFK  LAX      359     2475
+##     2: 2014     1   1        -3        13      AA    JFK  LAX      363     2475
+##     3: 2014     1   1         2         9      AA    JFK  LAX      351     2475
+##     4: 2014     1   1         2         1      AA    JFK  LAX      350     2475
+##     5: 2014     1   1        -2       -18      AA    JFK  LAX      338     2475
+##    ---                                                                         
+## 81479: 2014    10  31        -4       -21      UA    JFK  SFO      337     2586
+## 81480: 2014    10  31        -2       -37      UA    JFK  SFO      344     2586
+## 81481: 2014    10  31         0       -33      UA    JFK  LAX      320     2475
+## 81482: 2014    10  31        -6       -38      UA    JFK  SFO      343     2586
+## 81483: 2014    10  31        -6       -38      UA    JFK  LAX      323     2475
+##        hour
+##     1:    9
+##     2:   11
+##     3:   19
+##     4:   13
+##     5:   21
+##    ---     
+## 81479:   17
+## 81480:   18
+## 81481:   17
+## 81482:    9
+## 81483:   11</code></pre>
+</div>
+<div id="other-features-as-normal-cases" class="section level2">
+<h2>Other features as normal cases</h2>
+<pre class="r"><code>flights[.(&quot;LGA&quot;, &quot;TPA&quot;), .(arr_delay), on = c(&quot;origin&quot;, &quot;dest&quot;)]</code></pre>
+<pre><code>##       arr_delay
+##    1:         1
+##    2:        14
+##    3:       -17
+##    4:        -4
+##    5:       -12
+##   ---          
+## 1848:        39
+## 1849:       -24
+## 1850:       -12
+## 1851:        21
+## 1852:       -11</code></pre>
+<pre class="r"><code>#find more in vignettes</code></pre>
+</div>
+</div>

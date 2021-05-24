@@ -18,11 +18,11 @@ organizations:
   url: "www.bristol.ac.uk"
 
 # Short bio (displayed in user profile at end of posts)
-bio: So fortunate to live in this world and meet science.
+bio: 有志者，事竟成，破釜沉舟，百二秦关终属楚； 苦心人，天不负，卧薪尝胆，三千越甲可吞吴
 
 interests:
 - Marine Ecology and Evolution
-- Marine biogeochemical cycle
+- Marine carbon cycle
 - Ecosystem Modeling
 - Climate change
 
@@ -30,8 +30,8 @@ education:
   courses:
   - course: PhD in Earth Sciences
     institution: University of Bristol
-    year: 2020
-  - course: MSc in Hydrobiology
+    year: present
+  - course: MSc in Aquatic Biology
     institution: Sun Yat-sen University
     year: 2017
   - course: BSc in Aquaculture
@@ -77,4 +77,4 @@ user_groups:
 - [] #Visitors
 ---
 
-I am a CSC-funded PhD candidate at [School of Earth Sciences, University of Bristol](http://www.bristol.ac.uk/earthsciences/). I use a trait-based marine ecosystem model, ForamEcoGEnIE, to study the marine biogeochemical cycle through Earth history. You can find more information in my [CV](https://www.ruiying.online/files/cv.pdf).
+I am a CSC-funded PhD candidate at [School of Earth Sciences, University of Bristol](http://www.bristol.ac.uk/earthsciences/). I use a trait-based marine ecosystem model, ForamEcoGEnIE, to study the planktic foraminifera and marine carbon cycle in the Cenozoic oceans. I am a fan of Emacs (no vim!), Rafael Nadal (also Roger!), Leslie Cheung. If you want to find more boring on-paper information about me, check [my CV](https://www.ruiying.online/files/cv.pdf).

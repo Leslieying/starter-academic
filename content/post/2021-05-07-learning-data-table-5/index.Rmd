@@ -1,0 +1,84 @@
+---
+title: learning data.table (5)
+author: Rui Ying
+date: '2021-05-07'
+slug: []
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: 'Day 5: Secondary indices and auto indexing'
+authors: []
+lastmod: '2021-05-07T14:49:56+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+```{r echo=FALSE}
+library(data.table)
+flights <- fread("https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv")
+```
+
+# What's secondary index?
+
+Secondary index is similar to `key` but differ in
+
+-   Only reorder specific columns instead of *entire* data.table, and record the order vector in attribute `index`
+-   There can be \> 1 secondary index for a data.table (though you can have multiple keys per row).
+
+I treat secondary index as fast and simple key for subsetting.
+
+## Set secondary index
+
+```{r}
+setindex(flights, origin) #or setindexv()
+head(flights)
+names(attributes(flights))
+```
+
+## Get secondary index
+
+```{r}
+setindex(flights, origin, dest)
+indices(flights)
+
+```
+
+# Why secondary index?
+
+## Case 1: reordering is expensive
+
+Using `setkey()` does two things:
+
+-   Computing order vector
+
+-   Reordering entire data.table
+
+But the second one can be consuming, so secondary index do the first thing only and store the output vector into `index`.
+
+## Case 2: there is only 1 key for 1 data.table
+
+If we have set one key, and need to reset one, we have to re-computer and re-order entire data.table. But the secondary index allows more.
+
+## Case 3: reuse index
+
+The `index` attribute avoid repeated computing if an index already exists. Simply add `verbose=TRUE` in data.table arguments.
+
+# Application of secondary index
+
+## Fast subset using `on`
+
+```{r}
+flights["JFK"，on="origin"] #works for both key and secondary index
+```
+
+## Other features as normal cases
+
+```{r}
+flights[.("LGA", "TPA"), .(arr_delay), on = c("origin", "dest")]
+#find more in vignettes
+```
