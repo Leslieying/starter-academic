@@ -76,9 +76,9 @@ The $\theta$ here refers to the single parameter in our PDF distribution. If the
 
 In conclusion, Bayesian inference does work like below:
 
-```text
-Initial belief + New Data = Updated belief
-```
+
+> Initial belief + New Data = Updated belief
+
 This is why it is so important and relevant to science today.
 
 # Do Bayesian analysis
