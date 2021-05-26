@@ -130,7 +130,7 @@ Some statisticians found in some limited cases we are able to calculate posterio
 
 # MCMC to estimate posterior distribution
 
-The integration often prevents us from calculating posterior distribution analytically. Thus we have simulation method - Markov Chain Monte Carlo (MCMC). Markov chain is to trace the state of variable which is relevant with the last one. Monte Carlo is a famous gambling city (and tax haven and the venue of ATP 1000 Master where Rafa Nadal won his title for 11 times, OK I'm his fan :grin: ). Here we try parameters one by one (i.e. simulation) as a "chain".
+The integration often prevents us from calculating posterior distribution analytically. Thus we have simulation method - Markov Chain Monte Carlo (MCMC). Markov chain is to trace the state of variable which is relevant with the last one. Monte Carlo is a famous gambling city (and tax heaven and the venue of ATP 1000 Master where Rafa Nadal won his title for 11 times, OK I'm his fan :grin: ). Here we try parameters one by one (i.e. simulation) as a "chain".
 
 ## Metropolis algorithm
 
