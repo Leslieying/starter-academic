@@ -1,0 +1,12 @@
+# Font style metadata
+name = "my_font_set"
+
+# Optional Google font URL
+google_fonts = "family=Inconsolata&family=Roboto:wght@400;700&family=Source+Serif+Pro:wght@400&family=Montserrat:wght@400;700&"
+#"family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700"
+
+# Font families
+heading_font = "Montserrat"
+body_font = "Source Serif Pro"
+nav_font = "Roboto"
+mono_font = "Inconsolata"
