@@ -17,26 +17,18 @@ date_format = "Jan 2006"
 #   Required fields are `title`, `company`, and `date_start`.
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
+
 [[experience]]
-  title = "Fishery investigation of Daya Bay and Kaozhouyang Bay"
+  title = "Fishery investigation of Daya Bay, Kaozhouyang Bay and Liusha Bay"
   company = ""
   company_url = ""
-  location = "Huizhou City, Guangdong Province"
+  location = "Guangdong Province"
   date_start = "2017-09-01"
   date_end = "2019-08-01"
   description = """"""
 
 [[experience]]
-  title = "Fishery investigation of Liusha Bay"
-  company = ""
-  company_url = ""
-  location = "Zhanjiang City, Guangdong Province"
-  date_start = "2017-09-01"
-  date_end = "2019-08-01"
-  description = """"""
-
-[[experience]]
-  title = "Seasonal soil sampling at mangroves of Fujian Province"
+  title = "Seasonal soil core sampling in mangroves of Fujian Province"
   company = ""
   company_url = ""
   location = "Quanzhou City and Zhangzhou City, Fujian Province"
@@ -54,7 +46,7 @@ date_format = "Jan 2006"
   description = """"""
 
 [[experience]]
-  title = "Stable isotopes analysis of Daya Bay functional groups"
+  title = "  δ13C and δ15N stable isotopes analysis of Daya Bay functional groups"
   company = ""
   company_url = ""
   location = "Sun Yat-sen University"
@@ -63,25 +55,25 @@ date_format = "Jan 2006"
   description = """"""
 
 [[experience]]
-  title = "Indoor experiment of two aquatic plants' purification effects"
+  title = "Indoor experiments of two aquatic plants' purification effects on mariculture wastewater"
   company = ""
   company_url = ""
   location = "Sun Yat-sen University"
   date_start = "2017-10-01"
   date_end = "2018-06-05"
   description = """
-  NOTE: Many thanks for Chen Jingfang's experiment, My responsibilities were analysing data and writing paper
+  NOTE: This experiment is from Chen Jingfang's thesis, my responsibilities were analyzing data and paper writing
   """
 
 [[experience]]
-  title = "ForamEcoGENIE: A trait-based marine ecosystem model covering planktic foraminifera"
-  company = ""
-  company_url = "https://github.com/derpycode/cgenie.muffin/tree/DEV_SymbForam"
+  title = "ForamEcoGENIE: A trait-based marine ecosystem model that includes planktic foraminifera"
+  company = "(check source code here)"
+  company_url = "https://github.com/ruiying-ocean/cgenie.muffin/tree/DEV_SymbForam"
   location = "University of Bristol"
   date_start = "2021-04-01"
   date_end = "2024-06-01"
   description = """
-  Planktic foraminifera fossil rocords are the most well preserved archive in studying paleoceanography and paleo-climate. This model will be used to simulate foram's distribution and export in the past and future oceans.
+  This model will be used to simulate foram's distribution and export in the past and future oceans.
   """
   
 +++
