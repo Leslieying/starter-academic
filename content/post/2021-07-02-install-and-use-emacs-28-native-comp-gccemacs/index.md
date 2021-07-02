@@ -21,7 +21,7 @@ projects: []
 
 # Features
 
-It's fast. [GCC Emacs](http://akrl.sdf.org/gccemacs.html) uses libgccjit to compile and run Emacs Lisp as native code in form of re-loadable elf files.
+[GCC Emacs](http://akrl.sdf.org/gccemacs.html) uses libgccjit to compile and run Emacs Lisp as native code in form of re-loadable elf files. Therefore, it reaches a 3.8 times faster performance.
 
 More details can be found in the [paper](https://zenodo.org/record/3736363).
 
@@ -53,7 +53,7 @@ First enable gcc with libgccjit. `cd /usr/local/Homebrew/Library/Taps/homebrew/h
     ]
 ```
 
-Then there are (at least) three ways to compile Emacs native comp (emacs-plus@28 works for my big-sur laptop).
+Then there are (at least) three ways to compile Emacs native comp (emacs-plus@28 works for my laptop with Big Sur 11.4).
 
 - https://github.com/d12frosted/homebrew-emacs-plus.git
 - https://github.com/daviderestivo/homebrew-emacs-head
