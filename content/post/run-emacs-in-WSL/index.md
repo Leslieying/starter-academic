@@ -1,5 +1,5 @@
 ---
-title: "Run Emacs in WSL"
+title: "Run Emacs in WSL2"
 subtitle: ""
 summary: " "
 authors: [Rui Ying]
@@ -14,7 +14,7 @@ draft: false
 Following are multiple ways to run emacs in Windows.
 - Emacs for windows
 - WSYS2 (pacman -S Emacs)
-- WSL emacs
+- WSL/WSL2 emacs
 
 The first one should be the easiest way to install and run, yet it's not so good to use. For example, I'm struggling with environmental variable. Firstly, There're `C:\Users\usrname\app\roaming` and `C:\Users\usrname`  comfusing me which one should be `$HOME`, especially when I use university-distributed pc and don't have root permission to modify System variable. Secondly and similarly, when I use python, which python should I use, anaconda? The .exe file from python website? or the automatic answer, python in the windows store? The third one, I can't use `tramp-mode` easily as in other OS. The last one, when I open emacs by pressing their shortcut, the default path through entring `C-x C-f` is not `~` that I want. Certainly you can define an exact path in the property, but emmm, it's just so hard to use.
 
