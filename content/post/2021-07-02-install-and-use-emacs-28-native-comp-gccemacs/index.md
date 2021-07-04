@@ -130,6 +130,8 @@ makepkg --syncdeps --install
 
 After installation, you can run Emacs but it won't show xwindow as you expect. You need use a XServer (e.g., MobaXterm, X410, VcXsrv) to do this. Several months ago I've written a post that describes my experience of using Emacs on Windows, [check it](https://www.ruiying.online/post/run-emacs-in-wsl/) if you like.
 
+It's also worth noting that in the next generation of Windows, an official GUI support, `WSLG`, will be provided by Microsoft. You may want to check it.
+
 ```
 #add this line to your .zshrc/.bashrc
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
