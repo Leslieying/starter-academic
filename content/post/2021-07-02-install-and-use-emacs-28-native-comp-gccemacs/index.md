@@ -8,7 +8,7 @@ categories:
 tags:
   - Emacs; WSL
 subtitle: ''
-summary: ''
+summary: 'Try new Emacs feature: native compilation'
 authors: []
 lastmod: '2021-07-02T19:25:48+01:00'
 featured: no
