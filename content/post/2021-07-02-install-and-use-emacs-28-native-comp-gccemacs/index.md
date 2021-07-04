@@ -69,7 +69,7 @@ To enable WSL2 in Windows, follow the steps in [microsoft doc](https://docs.micr
 
 Since Arch Linux is not included in the Microsoft Store, we need to install it manually. However, yuk7 has a project to make this possible and easy to do based on a perfect [documentation](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/).
 
-``` sh
+``` shell
 #set root password
 passwd
 
@@ -98,7 +98,7 @@ pacman -S <package>
 
 ### Install yay (an AUR helper)
 
-``` sh
+``` shell
 pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -109,14 +109,14 @@ makepkg -si
 
 This step is needed because libgccjit key is not included in archwsl. Use the command below to add it.
 
-``` sh
+``` shell
 #replace <key> with the hashed keys according to cmd notification
 gpg --keyserver keyserver.ubuntu.com --recv-key <key1> <key2>
 ```
 
 ### Install Emacs 28 (each one should work)
 
-``` sh
+``` shell
 yay -S emacs-gcc-wayland-devel-bin
 yay -S emacs-native-comp-git-enhanced
 yay -S emacs-native-comp-git
@@ -132,7 +132,7 @@ After installation, you can run Emacs but it won't show xwindow as you expect. Y
 
 It's also worth noting that in the next generation of Windows, an official GUI support, `WSLG`, will be provided by Microsoft. You may want to check it.
 
-```
+``` shell
 #add this line to your .zshrc/.bashrc
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 
@@ -141,6 +141,11 @@ echo $DISPLAY
 
 #or
 nc -v <IP> 6000
+
+#rescale GUI app
+export GDK_SCALE=2
+#or
+export QT_SCALE_FACTOR=2
 ```
 
 
