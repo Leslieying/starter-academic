@@ -18,9 +18,11 @@ Find latest Windows Terminal and Powershell in their release pages ([windows ter
 
 
 # Customization
+
 The latest windows terminal includes a GUI setting interface (the original one is simply a json file), to open it just `Ctrl + ,` and play with your own!
 
 It is also possible to do something as below to enable Emacs keybinding and set new theme
+
 ``` sh
 # install posh-git and oh-my-posh
 Install-Module -Name posh-git -AllowPrerelease -Force
@@ -40,6 +42,4 @@ Set-Theme pure
 # if you use Emacs keybinding
 Set-PSReadLineOption -EditMode Emacs
 ```
-Couple with [the other new post](https://www.ruiying.online/post/run-emacs-on-a-remote-shell/), Now I can operate remote file more smoothly.
-
-
+Couple with [the other new post](https://www.ruiying.online/post/2021-07-12-use-emacs-on-a-remote-shell/), Now I can operate remote file more smoothly.

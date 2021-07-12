@@ -7,7 +7,7 @@ categories:
   - Emacs
 tags: []
 subtitle: ''
-summary: ''
+summary: 'Another way to run Emacs'
 authors: []
 lastmod: '2021-07-12T22:01:02+01:00'
 featured: no
