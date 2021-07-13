@@ -7,9 +7,7 @@ categories:
   - Emacs
 tags:
   - Emacs; WSL
-subtitle: ''
 summary: Emacs feature: native compilation plus 1M ways to download'
-authors: []
 lastmod: '2021-07-02T19:25:48+01:00'
 featured: no
 image:
