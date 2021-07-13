@@ -8,7 +8,7 @@ categories:
 tags:
   - Emacs; WSL
 subtitle: ''
-summary: 'Try new Emacs feature: native compilation'
+summary: Emacs feature: native compilation plus 1M ways to download'
 authors: []
 lastmod: '2021-07-02T19:25:48+01:00'
 featured: no
@@ -53,7 +53,7 @@ First enable gcc with libgccjit. `cd /usr/local/Homebrew/Library/Taps/homebrew/h
     ]
 ```
 
-Then run `brew install gcc`. 
+Then run `brew install gcc`.
 
 After successful installation of libgccjit, there are (at least) three ways to compile Emacs native comp (emacs-plus@28 works for my laptop with Big Sur 11.4).
 
@@ -151,9 +151,24 @@ export QT_SCALE_FACTOR=2
 ```
 
 
+## Linux (Ubuntu)
+
+If you don't want to build from source or are not able to do this due to lack of full permission, you might need the following two ways.
+
+### Emacs-ng
+
+> [Emacs-ng](https://github.com/emacs-ng/emacs-ng) is based off of the branch of emacs, and regularly merges in the latest changes(this branch includes the native compilation feature from Andrea Corallo).
+
+One can easily download package file (.deb) from [release page](https://github.com/emacs-ng/emacs-ng/releases) and use `sudo dpkg -i xxx.deb` to install it.
+Note Emacs-ng includes many experimental features powered by webrender and Google V8 engine, which means it's a fork instead of a Vanilla Emacs.
+
+### Snap
+
+[Emacs-snap](https://snapcraft.io/emacs) is another way to install latest Emacs in Ubuntu. It's maintained by Alex Murray and now it includes native-comp.
+
 # Emacs configurations
 
-### Clone straight.el (optional)
+## Clone straight.el (optional)
 
 The original boostrap code of straight.el won't work in WSL2, so we need clone the repository to the `.emacs.d` directory. See the Debugging section of doc.
 
@@ -161,7 +176,7 @@ The original boostrap code of straight.el won't work in WSL2, so we need clone t
 git clone https://github.com/raxod502/straight.el.git ~/.emacs.d/straight/repos/straight.el
 ```
 
-### Native comp support 
+## Native comp support
 
 Download your configuration file with codes below to unleash its power.
 
@@ -176,6 +191,6 @@ Download your configuration file with codes below to unleash its power.
     ))
 ```
 
-## Conclusion
+# Conclusion
 
 My experience is that it's significantly faster on Mac, which is why I spend more time cloning this on Windows. However, on WSL2 I really can't find the difference because the Emacs 28 without native comp feature on WSL2 is already very fast (init time < 1.0s). Given the blurry problem of running GUI app based on XServer on a high DPI screen, consider twice before your decision.
